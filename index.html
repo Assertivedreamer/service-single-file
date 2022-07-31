@@ -1,0 +1,33 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Test</h1>
+        <div id="tst_container"></div>
+    </body>
+    <script>
+        navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('SW registered!', reg))
+        .catch(err => console.log('Boo!', err));
+
+        //First time get the data from API srver. Second time onwards it worker fetches the data from the cache.
+        fetch('http://localhost:8000/', {
+            method: 'GET'
+        }).then((response) => {
+            return response.json();
+        }).then((data) => {
+            console.log('Got the data from API', data);
+
+            //Store the data in local storage. It's not used any where. Local storage cannot be accessed from service worker
+            window.localStorage.setItem('api_data', JSON.stringify(data));
+
+            //Display the response from the API in tst_container div
+            document.getElementById('tst_container').innerHTML = JSON.stringify(data);
+
+        }).catch(function(err) {
+            console.log('Failed to fetch the data from api');
+        });
+        
+    </script>
+</html>
