@@ -20,7 +20,7 @@
             console.log('Got the data from API', data);
 
             //Store the data in local storage. It's not used any where. Local storage cannot be accessed from service worker
-            window.localStorage.setItem('api_data', JSON.stringify(data));
+             window.localStorage.setItem('api_data', JSON.stringify(data));
 
             //Display the response from the API in tst_container div
             document.getElementById('tst_container').innerHTML = JSON.stringify(data);

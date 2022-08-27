@@ -4,8 +4,9 @@ self.addEventListener('install', event => {
     // cache a cat SVG
     event.waitUntil(
         //Stores the data from the API in cache
-      caches.open('static-v1').then(cache => cache.add('http://localhost:8000/'))
-    );
+      caches.open('static-v1').then(cache => cache.add('http://localhost:8000/')),
+
+);
   });
   
   self.addEventListener('activate', event => {
